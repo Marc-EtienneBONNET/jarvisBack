@@ -7,7 +7,7 @@ export default AppDataSource = new DataSource({
   port: 5431,
   username: 'postgres',
   password: 'root',
-  database: 'tmp',
+  database: 'jarvisDev',
   entities: [],
   synchronize: true,
   logging: false,
