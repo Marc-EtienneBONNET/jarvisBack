@@ -1,16 +1,24 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+
 @Entity()
 export class MyEvent {
   @PrimaryGeneratedColumn()
   id: number;
-
   @Column()
-  firstName: string;
-
+  type: string;
   @Column()
-  lastName: string;
-
-  @Column({ default: true })
-  isActive: boolean;
+  alarmType: string;
+  @Column()
+  titre: string;
+  @Column()
+  detail: string;
+  @Column()
+  debut: Date;
+  @Column()
+  fin: Date;
+  @Column()
+  recurance: string;
+  @Column()
+  argent: number;
 }
