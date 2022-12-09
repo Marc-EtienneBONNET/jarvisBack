@@ -36,6 +36,7 @@ export class MyEventService {
     tmp.fin = data.fin;
     tmp.recurance = data.recurance;
     tmp.argent = data.argent;
+    tmp.argentType = data.argentType;
     this.myEventRepository.save(tmp);
   }
 }

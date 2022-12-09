@@ -22,15 +22,17 @@ export class MyEventControler {
 
   @Post('postAddNew')
   async postAddNewEvent(@Body() body) {
-    if (body.id != -1){
-        await this.getEventRemoveById(body.id);
+    if (body.id != -1) {
+      await this.getEventRemoveById(body.id);
     }
     await this.myEventService.postNewEvent(body);
   }
 
   @Post('postModif')
   async postModifEvent(@Body() body) {
-    await this.getEventRemoveById(body.id);
+    if (body.id !== -1) {
+      await this.myEventService.getEventRemoveById(body.id);
+    }
     await this.myEventService.postNewEvent(body);
   }
 }

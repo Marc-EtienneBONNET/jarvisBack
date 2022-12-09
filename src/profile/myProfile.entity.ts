@@ -1,25 +1,23 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class MyEvent {
+export class MyProfile {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  type: string;
+  statut: string;
   @Column()
-  alarmType: string;
+  nom: string;
   @Column()
-  titre: string;
+  prenom: string;
   @Column()
-  detail: string;
+  mail: string;
   @Column()
-  debut: Date;
+  adresse: string;
   @Column()
-  fin: Date;
+  tel: string;
   @Column()
-  recurance: string;
+  dateNaissance: Date;
   @Column()
-  argent: number;
-  @Column()
-  argentType: string;
+  solde: number;
 }
