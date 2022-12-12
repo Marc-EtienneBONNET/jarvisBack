@@ -13,11 +13,26 @@ export class MyProfileService {
   async getProfileTakeAll(): Promise<MyProfile[]> {
     return await this.myProfileRepository.find();
   }
+
+  async getProfileById(id: number) {
+    const tmp = await this.myProfileRepository.findOneBy({
+      id: id,
+    });
+    return tmp;
+  }
+
   async getProfileRemoveById(id: number) {
     const tmp = await this.myProfileRepository.findOneBy({
       id: id,
     });
     this.myProfileRepository.remove(tmp);
+  }
+
+  async getPassWord(mail: string) {
+    const tmp = await this.myProfileRepository.findOneBy({
+      mail: mail,
+    });
+    return tmp.password;
   }
 
   postNewEvent(data) {
@@ -31,5 +46,18 @@ export class MyProfileService {
     tmp.dateNaissance = data.dateNaissance;
     tmp.statut = data.statut;
     this.myProfileRepository.save(tmp);
+  }
+
+  async postNewPass(data) {
+    const tmp = await this.myProfileRepository.findOneBy({
+      id: 1,
+    });
+    tmp.password = data;
+    this.myProfileRepository.save(tmp);
+  }
+
+  async MouvIsConnect(data) {
+    data.profile.isConnect = data.isConnect;
+    this.myProfileRepository.save(data.profile);
   }
 }

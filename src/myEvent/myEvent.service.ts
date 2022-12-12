@@ -14,6 +14,12 @@ export class MyEventService {
   async getEventTakeAll(): Promise<MyEvent[]> {
     return await this.myEventRepository.find();
   }
+
+  async getEventTakeAllForOneUser(user): Promise<MyEvent[]> {
+    return await this.myEventRepository.findBy({
+      user: user,
+    });
+  }
   getEventTakeById(id: number): Promise<MyEvent> {
     return this.myEventRepository.findOneBy({
       id: id,
@@ -37,6 +43,7 @@ export class MyEventService {
     tmp.recurance = data.recurance;
     tmp.argent = data.argent;
     tmp.argentType = data.argentType;
+    tmp.user = data.user;
     this.myEventRepository.save(tmp);
   }
 }

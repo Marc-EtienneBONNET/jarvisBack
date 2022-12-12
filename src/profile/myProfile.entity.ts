@@ -13,7 +13,11 @@ export class MyProfile {
   @Column()
   mail: string;
   @Column()
+  password: string;
+  @Column()
   adresse: string;
+  @Column()
+  isConnect: boolean;
   @Column()
   tel: string;
   @Column()

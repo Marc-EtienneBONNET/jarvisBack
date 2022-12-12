@@ -1,9 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { MyProfile } from './../profile/myProfile.entity';
 
 @Entity()
 export class MyEvent {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  user: number;
   @Column()
   type: string;
   @Column()
@@ -19,7 +22,7 @@ export class MyEvent {
   @Column()
   recurance: string;
   @Column()
-  argent: number;
+  argent: string;
   @Column()
   argentType: string;
 }

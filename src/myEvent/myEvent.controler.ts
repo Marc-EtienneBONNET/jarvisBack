@@ -10,6 +10,11 @@ export class MyEventControler {
     return await this.myEventService.getEventTakeAll();
   }
 
+  @Post('postTakeAllForOneUser')
+  async postEventTakeAllForOneUser(@Body() body) {
+    return await this.myEventService.getEventTakeAllForOneUser(body.id);
+  }
+
   @Get('getTakeById:id')
   async getEventTakeById(@Param('id') id) {
     return await this.myEventService.getEventTakeById(id);
