@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProfileService } from './myProfile.service';
+const bcrypt = require('bcrypt');
 
 @Controller('theProfile')
 export class ProfileControler {
@@ -53,5 +54,14 @@ export class ProfileControler {
   async addNewProfile(@Body() body) {
     if (!body.profile) console.log('Error: argument incorecte (body.profile)');
     else this.profileService.addNewProfile(body.profile);
+  }
+
+  @Post('CheckPassword')
+  async CheckPassword(@Body() body) {
+    if (!body.mail || !body.password)
+      console.log('Error: argument incorecte (body.mail, body.password)');
+    else {
+      return await this.profileService.CheckPassword(body.mail, body.password);
+    }
   }
 }

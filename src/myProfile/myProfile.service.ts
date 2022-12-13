@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+const bcrypt = require('bcrypt');
 import {
   profile,
   formations,
@@ -66,7 +67,8 @@ export class ProfileService {
     const profile = await this.profileRepository.findOneBy({
       id: res,
     });
-    profile[titreModif] = modif;
+    if (titreModif === 'password') profile[titreModif] = bcrypt.hash(modif, 8);
+    else profile[titreModif] = modif;
     this.profileRepository.save(profile);
   }
 
@@ -98,6 +100,7 @@ export class ProfileService {
     const tmpProfile = await this.profileRepository.findOneBy({
       [source]: res,
     });
+    if (!tmpProfile) return;
     const tmpFormations = await this.formationsRepository.findBy({
       idProfile: tmpProfile.id,
     });
@@ -140,7 +143,7 @@ export class ProfileService {
     tmpProfile.github = theProfile.github;
     tmpProfile.codingGame = theProfile.codingGame;
     tmpProfile.statu = theProfile.statu;
-    tmpProfile.password = theProfile.password;
+    tmpProfile.password = bcrypt.hash(theProfile.password, 8);
     tmpProfile.solde = theProfile.solde;
     this.profileRepository.save(tmpProfile);
     const idProfile = (
@@ -174,5 +177,14 @@ export class ProfileService {
       tmpPortfolio.idProfile = theProfile.portfolio[i].idProfile;
       this.portfolioRepository.save(tmpPortfolio);
     }
+  }
+
+  async CheckPassword(mail, password) {
+    const profile = await this.createStructForAllInfoForOneProfile(
+      'mail',
+      mail,
+    );
+    if (profile && (await bcrypt.compare(password, profile.password)) === true)
+      return profile;
   }
 }
