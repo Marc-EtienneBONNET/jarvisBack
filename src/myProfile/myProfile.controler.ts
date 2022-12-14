@@ -13,7 +13,7 @@ export class ProfileControler {
 
   @Post('takeOneProfile')
   async takeOneProfile(@Body() body) {
-    if (!body || !body.source || !body.res || !body.source[0] || !body.res[0])
+    if (!body || !body.source || !body.res)
       return 'Erreur de parametrage des argument donner a takeOneProfile(source, res)';
     else {
       return await this.profileService.createStructForAllInfoForOneProfile(
