@@ -131,7 +131,7 @@ export class ProfileService {
 
   async addNewProfile(theProfile) {
     const tmpProfile = new profile();
-
+    if (theProfile.id) tmpProfile.id = theProfile.id;
     tmpProfile.photo = theProfile.photo;
     tmpProfile.nom = theProfile.nom;
     tmpProfile.prenom = theProfile.prenom;
@@ -143,14 +143,14 @@ export class ProfileService {
     tmpProfile.github = theProfile.github;
     tmpProfile.codingGame = theProfile.codingGame;
     tmpProfile.statu = theProfile.statu;
-    tmpProfile.password = bcrypt.hash(theProfile.password, 8);
+    if (theProfile.id) tmpProfile.password = theProfile.password;
+    else tmpProfile.password = await bcrypt.hash(theProfile.password, 8);
     tmpProfile.solde = theProfile.solde;
-    this.profileRepository.save(tmpProfile);
-    const idProfile = (
-      await this.profileRepository.findOneBy({
-        mail: tmpProfile.mail,
+    await this.profileRepository.save(tmpProfile);
+    const idProfile = (await this.profileRepository.findOneBy({
+        mail: theProfile.mail,
       })
-    ).id;
+    );
     for (let i = 0; theProfile.formations && theProfile.formations[i]; i++) {
       const tmpFormatiomn = new formations();
       tmpFormatiomn.photo = theProfile.formations[i].photo;

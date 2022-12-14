@@ -64,4 +64,20 @@ export class ProfileControler {
       return await this.profileService.CheckPassword(body.mail, body.password);
     }
   }
+
+  @Post('mouvProfileAll')
+  async mouvProfileAll(@Body() body) {
+    if (!body.res || !body.profile)
+      console.log('Error: argument incorecte (body.res, body.profile)');
+    else {
+      try {
+        await this.profileService.supProfile(body.res);
+        await this.profileService.addNewProfile(body.profile);
+      } catch (e) {
+        console.log(
+          'Error: la modification de profile n as pas pus etre realiser',
+        );
+      }
+    }
+  }
 }
