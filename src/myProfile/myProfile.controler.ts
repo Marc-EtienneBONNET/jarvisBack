@@ -71,7 +71,7 @@ export class ProfileControler {
       console.log('Error: argument incorecte (body.res, body.profile)');
     else {
       try {
-        await this.profileService.supProfile(body.res);
+        //await this.profileService.supProfile(body.res);
         await this.profileService.addNewProfile(body.profile);
       } catch (e) {
         console.log(

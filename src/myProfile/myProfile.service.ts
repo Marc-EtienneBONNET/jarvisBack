@@ -130,8 +130,12 @@ export class ProfileService {
   }
 
   async addNewProfile(theProfile) {
-    const tmpProfile = new profile();
-    if (theProfile.id) tmpProfile.id = theProfile.id;
+    let tmpProfile;
+    if (theProfile.id) {
+      tmpProfile = await this.profileRepository.findOneBy({
+        id: theProfile.id,
+      });
+    } else tmpProfile = new profile();
     tmpProfile.photo = theProfile.photo;
     tmpProfile.nom = theProfile.nom;
     tmpProfile.prenom = theProfile.prenom;
@@ -145,36 +149,52 @@ export class ProfileService {
     tmpProfile.statu = theProfile.statu;
     if (theProfile.id) tmpProfile.password = theProfile.password;
     else tmpProfile.password = await bcrypt.hash(theProfile.password, 8);
-    tmpProfile.solde = theProfile.solde;
+    tmpProfile.solde = theProfile.solde; 
     await this.profileRepository.save(tmpProfile);
-    const idProfile = (await this.profileRepository.findOneBy({
-        mail: theProfile.mail,
-      })
-    );
+
     for (let i = 0; theProfile.formations && theProfile.formations[i]; i++) {
-      const tmpFormatiomn = new formations();
-      tmpFormatiomn.photo = theProfile.formations[i].photo;
-      tmpFormatiomn.niveau = theProfile.formations[i].niveau;
-      tmpFormatiomn.debut = theProfile.formations[i].debut;
-      tmpFormatiomn.fin = theProfile.formations[i].fin;
-      tmpFormatiomn.text = theProfile.formations[i].text;
-      tmpFormatiomn.idProfile = theProfile.formations[i].idProfile;
+      let tmpFormatiomn;
+      if (theProfile.formations[i].id != -1){
+        tmpFormatiomn = theProfile.formations[i];
+      }
+      else {
+        tmpFormatiomn = new formations();
+        tmpFormatiomn.name = theProfile.formations[i].name;
+        tmpFormatiomn.photo = theProfile.formations[i].photo;
+        tmpFormatiomn.niveau = theProfile.formations[i].niveau;
+        tmpFormatiomn.debut = theProfile.formations[i].debut;
+        tmpFormatiomn.fin = theProfile.formations[i].fin;
+        tmpFormatiomn.text = theProfile.formations[i].text;
+        tmpFormatiomn.idProfile = theProfile.formations[i].idProfile;
+      }
       this.formationsRepository.save(tmpFormatiomn);
     }
     for (let i = 0; theProfile.competances && theProfile.competances[i]; i++) {
-      const tmpCompetances = new competances();
-      tmpCompetances.photo = theProfile.competances[i].photo;
-      tmpCompetances.text = theProfile.competances[i].text;
-      tmpCompetances.idProfile = theProfile.competances[i].idProfile;
+      let tmpCompetances;
+      if (theProfile.competances[i].id != -1)
+        tmpCompetances = theProfile.competances[i];
+      else {
+        tmpCompetances = new competances();
+        tmpCompetances.name = theProfile.competances[i].name;
+        tmpCompetances.photo = theProfile.competances[i].photo;
+        tmpCompetances.text = theProfile.competances[i].text;
+        tmpCompetances.idProfile = theProfile.competances[i].idProfile;
+      }
       this.competancesRepository.save(tmpCompetances);
     }
     for (let i = 0; theProfile.portfolio && theProfile.portfolio[i]; i++) {
-      const tmpPortfolio = new portfolio();
-      tmpPortfolio.photo = theProfile.portfolio[i].photo;
-      tmpPortfolio.audio = theProfile.portfolio[i].photo;
-      tmpPortfolio.lien = theProfile.portfolio[i].photo;
-      tmpPortfolio.text = theProfile.portfolio[i].text;
-      tmpPortfolio.idProfile = theProfile.portfolio[i].idProfile;
+      let tmpPortfolio;
+      if (theProfile.portfolio[i].id !== -1)
+        tmpPortfolio = theProfile.portfolio[i];
+      else {
+        tmpPortfolio = new portfolio();
+        tmpPortfolio.name = theProfile.portfolio[i].name;
+        tmpPortfolio.photo = theProfile.portfolio[i].photo;
+        tmpPortfolio.audio = theProfile.portfolio[i].photo;
+        tmpPortfolio.lien = theProfile.portfolio[i].photo;
+        tmpPortfolio.text = theProfile.portfolio[i].text;
+        tmpPortfolio.idProfile = theProfile.portfolio[i].idProfile;
+      }
       this.portfolioRepository.save(tmpPortfolio);
     }
   }

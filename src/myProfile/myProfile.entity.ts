@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+//$2b$08$Lj7e5Mladk/zlvaRCcjIUe/OgVsK/RF/rFgghh3dQPLGmtOX48mYW
 @Entity()
 export class profile {
   @PrimaryGeneratedColumn()
@@ -17,7 +17,7 @@ export class profile {
   @Column()
   mail: string;
   @Column()
-  tel: boolean;
+  tel: string;
   @Column()
   linkedin: string;
   @Column()
@@ -37,6 +37,8 @@ export class formations {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
+  name: string;
+  @Column()
   photo: string;
   @Column()
   niveau: string;
@@ -55,6 +57,8 @@ export class competances {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
+  name: string;
+  @Column()
   photo: string;
   @Column()
   text: string;
@@ -66,6 +70,8 @@ export class competances {
 export class portfolio {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  name: string;
   @Column()
   photo: string;
   @Column()
