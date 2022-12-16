@@ -1,6 +1,9 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Redirect, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProfileService } from './myProfile.service';
 const bcrypt = require('bcrypt');
+import { FileInterceptor } from '@nestjs/platform-express';
+import { fileURLToPath } from 'url';
+import { readFile } from 'fs';
 
 @Controller('theProfile')
 export class ProfileControler {
@@ -71,7 +74,6 @@ export class ProfileControler {
       console.log('Error: argument incorecte (body.res, body.profile)');
     else {
       try {
-        //await this.profileService.supProfile(body.res);
         await this.profileService.addNewProfile(body.profile);
       } catch (e) {
         console.log(
@@ -80,4 +82,20 @@ export class ProfileControler {
       }
     }
   }
+
+  @Post('uplodPhoto')
+  @UseInterceptors(FileInterceptor('photoProfile', { dest: './img' }))
+  uploadFile(@UploadedFile() file) {
+    return file;
+  }
+
+  @Get('sendImage:name')
+  async sendImage(@Res() res, @Param('name') name) {
+    let tmp;
+    tmp = await readFile('./img/' + name, (err, data) => {
+        res.send(data);
+    });
+  }
+
+
 }
