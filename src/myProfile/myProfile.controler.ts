@@ -74,6 +74,7 @@ export class ProfileControler {
       console.log('Error: argument incorecte (body.res, body.profile)');
     else {
       try {
+        console.log(body.profile);
         await this.profileService.addNewProfile(body.profile);
       } catch (e) {
         console.log(
@@ -83,9 +84,15 @@ export class ProfileControler {
     }
   }
 
-  @Post('uplodPhoto')
-  @UseInterceptors(FileInterceptor('photoProfile', { dest: './img' }))
+  @Post('uplodImg')
+  @UseInterceptors(FileInterceptor('img', { dest: './img' }))
   uploadFile(@UploadedFile() file) {
+    return file;
+  }
+
+  @Post('uplodAudio')
+  @UseInterceptors(FileInterceptor('audio', { dest: './audio' }))
+  uplodAudio(@UploadedFile() file) {
     return file;
   }
 
@@ -96,6 +103,5 @@ export class ProfileControler {
         res.send(data);
     });
   }
-
 
 }

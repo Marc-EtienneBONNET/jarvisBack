@@ -190,8 +190,8 @@ export class ProfileService {
         tmpPortfolio = new portfolio();
         tmpPortfolio.name = theProfile.portfolio[i].name;
         tmpPortfolio.photo = theProfile.portfolio[i].photo;
-        tmpPortfolio.audio = theProfile.portfolio[i].photo;
-        tmpPortfolio.lien = theProfile.portfolio[i].photo;
+        tmpPortfolio.audio = theProfile.portfolio[i].audio;
+        tmpPortfolio.lien = theProfile.portfolio[i].lien;
         tmpPortfolio.text = theProfile.portfolio[i].text;
         tmpPortfolio.idProfile = theProfile.portfolio[i].idProfile;
       }
