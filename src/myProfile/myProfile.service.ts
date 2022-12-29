@@ -146,6 +146,9 @@ export class ProfileService {
     tmpProfile.linkedin = theProfile.linkedin;
     tmpProfile.github = theProfile.github;
     tmpProfile.codingGame = theProfile.codingGame;
+    tmpProfile.disponibilite = theProfile.disponibilite;
+    tmpProfile.textDescriptif = theProfile.textDescriptif;
+    tmpProfile.contrat = theProfile.contrat;
     tmpProfile.statu = theProfile.statu;
     if (theProfile.id) tmpProfile.password = theProfile.password;
     else tmpProfile.password = await bcrypt.hash(theProfile.password, 8);
@@ -159,6 +162,7 @@ export class ProfileService {
       }
       else {
         tmpFormatiomn = new formations();
+        tmpFormatiomn.lien = theProfile.formations[i].lien;
         tmpFormatiomn.name = theProfile.formations[i].name;
         tmpFormatiomn.photo = theProfile.formations[i].photo;
         tmpFormatiomn.niveau = theProfile.formations[i].niveau;
@@ -175,6 +179,7 @@ export class ProfileService {
         tmpCompetances = theProfile.competances[i];
       else {
         tmpCompetances = new competances();
+        tmpCompetances.category = theProfile.competances[i].category;
         tmpCompetances.name = theProfile.competances[i].name;
         tmpCompetances.photo = theProfile.competances[i].photo;
         tmpCompetances.text = theProfile.competances[i].text;

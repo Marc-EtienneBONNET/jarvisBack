@@ -16,11 +16,11 @@ import { ProfileModule } from './myProfile/myProfile.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5431,
+      host: 'jarvisdb.cc05dxgjtcjh.eu-west-3.rds.amazonaws.com',
+      port: 5432,
       username: 'postgres',
-      password: 'root',
-      database: 'jarvisDev',
+      password: 'Cestmoib244',
+      database: 'jarvis_db',
       entities: [MyEvent, profile, formations, competances, portfolio],
       synchronize: true,
       autoLoadEntities: true,

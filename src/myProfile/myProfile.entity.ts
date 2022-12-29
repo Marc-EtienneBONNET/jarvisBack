@@ -29,6 +29,12 @@ export class profile {
   @Column()
   password: string;
   @Column()
+  disponibilite: string;
+  @Column()
+  textDescriptif: string;
+  @Column()
+  contrat: string;
+  @Column()
   solde: string;
 }
 
@@ -36,6 +42,8 @@ export class profile {
 export class formations {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  lien: string;
   @Column()
   name: string;
   @Column()
@@ -56,6 +64,8 @@ export class formations {
 export class competances {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  category: string;
   @Column()
   name: string;
   @Column()
