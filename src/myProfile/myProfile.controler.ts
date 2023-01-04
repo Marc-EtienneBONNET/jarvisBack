@@ -103,4 +103,8 @@ export class ProfileControler {
     });
   }
 
+  @Post('addNewConnection')
+  async sendaddNewConnectionImage(@Body() body) {
+    await this.profileService.addNewConnection(body.id);
+  }
 }

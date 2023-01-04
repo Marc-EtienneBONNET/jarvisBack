@@ -150,6 +150,7 @@ export class ProfileService {
     tmpProfile.textDescriptif = theProfile.textDescriptif;
     tmpProfile.contrat = theProfile.contrat;
     tmpProfile.statu = theProfile.statu;
+    tmpProfile.nbConnectionCv = theProfile.nbConnectionCv;
     if (theProfile.id) tmpProfile.password = theProfile.password;
     else tmpProfile.password = await bcrypt.hash(theProfile.password, 8);
     tmpProfile.solde = theProfile.solde; 
@@ -211,5 +212,13 @@ export class ProfileService {
     );
     if (profile && (await bcrypt.compare(password, profile.password)) === true)
       return profile;
+  }
+
+  async addNewConnection(id) {
+    const profile = await this.profileRepository.findOneBy({
+      id: id,
+    });
+    profile.nbConnectionCv++;
+    this.profileRepository.save(profile);
   }
 }

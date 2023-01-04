@@ -36,6 +36,8 @@ export class profile {
   contrat: string;
   @Column()
   solde: string;
+  @Column()
+  nbConnectionCv: number;
 }
 
 @Entity()
