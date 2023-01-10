@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Redirect, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProfileService } from './myProfile.service';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 import { FileInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'url';
 import { readFile } from 'fs';

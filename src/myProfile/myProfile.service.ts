@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 import {
   profile,
   formations,
