@@ -1,4 +1,5 @@
 {
+  "homepage": "http://localhost:3001",
   "name": "backend",
   "version": "0.0.1",
   "description": "",
@@ -20,7 +21,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "deploy": "gh-pages -d dist"
-    
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
