@@ -25,6 +25,8 @@ import { ProfileModule } from './myProfile/myProfile.module';
       synchronize: true,
       autoLoadEntities: true,
       logging: false,
+      subscribers: [],
+      migrations: [],
     }),
     MyEventModule,
     ProfileModule,
