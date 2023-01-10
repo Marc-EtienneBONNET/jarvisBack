@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Redirect, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProfileService } from './myProfile.service';
 const bcrypt = require('bcryptjs');
-import { FileInterceptor } from '@nestjs/platform-express';
+// import { FileInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'url';
 import { readFile } from 'fs';
 
@@ -83,17 +83,17 @@ export class ProfileControler {
     }
   }
 
-  @Post('uplodImg')
-  @UseInterceptors(FileInterceptor('img', { dest: './img' }))
-  uploadFile(@UploadedFile() file) {
-    return file;
-  }
+  // @Post('uplodImg')
+  // @UseInterceptors(FileInterceptor('img', { dest: './img' }))
+  // uploadFile(@UploadedFile() file) {
+  //   return file;
+  // }
 
-  @Post('uplodAudio')
-  @UseInterceptors(FileInterceptor('audio', { dest: './audio' }))
-  uplodAudio(@UploadedFile() file) {
-    return file;
-  }
+  // @Post('uplodAudio')
+  // @UseInterceptors(FileInterceptor('audio', { dest: './audio' }))
+  // uplodAudio(@UploadedFile() file) {
+  //   return file;
+  // }
 
   @Get('sendImage:name')
   async sendImage(@Res() res, @Param('name') name) {
