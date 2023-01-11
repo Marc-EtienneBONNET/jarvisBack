@@ -99,6 +99,7 @@ export class ProfileControler {
   async sendImage(@Res() res, @Param('name') name) {
     let tmp;
     tmp = await readFile('./img/' + name, (err, data) => {
+      console.log('verif :D');
         res.send(data);
     });
   }
