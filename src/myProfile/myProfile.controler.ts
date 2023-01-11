@@ -105,6 +105,7 @@ export class ProfileControler {
         console.log('res : ', res);
     });
     console.log('tmp : ', tmp);
+    return (tmp);
   }
 
   @Post('addNewConnection')

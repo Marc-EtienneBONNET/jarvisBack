@@ -7,7 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.log('verif');
     return 'test4';//this.appService.getHello();
   }
 }
