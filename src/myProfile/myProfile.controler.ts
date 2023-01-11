@@ -101,7 +101,10 @@ export class ProfileControler {
     tmp = await readFile('./img/' + name, (err, data) => {
       console.log('verif :D');
         res.send(data);
+        console.log('res : ', res);
+
     });
+    console.log('tmp : ', tmp);
   }
 
   @Post('addNewConnection')
