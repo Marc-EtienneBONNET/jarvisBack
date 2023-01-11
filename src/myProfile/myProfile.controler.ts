@@ -103,7 +103,6 @@ export class ProfileControler {
       console.log('verif :D');
         res.send(data);
         console.log('res : ', res);
-
     });
     console.log('tmp : ', tmp);
   }
