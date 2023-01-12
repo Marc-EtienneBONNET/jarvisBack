@@ -8,6 +8,7 @@ async function bootstrap() {
         origin: [
             'https://marc-etiennebonnet.github.io/CVV2/',
             'http://localhost:3000',
+            'http://localhost:3002',
         ],
         credentials: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
