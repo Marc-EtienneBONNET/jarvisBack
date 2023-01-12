@@ -53,8 +53,6 @@ export declare class ProfileControler {
         nbConnectionCv: number;
     }>;
     mouvProfileAll(body: any): Promise<void>;
-    uploadFile(file: any): any;
-    uplodAudio(file: any): any;
     sendImage(res: any, name: any): Promise<void>;
     sendaddNewConnectionImage(body: any): Promise<void>;
 }

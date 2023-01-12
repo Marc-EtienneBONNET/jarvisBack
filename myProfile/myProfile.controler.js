@@ -15,8 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProfileControler = void 0;
 const common_1 = require("@nestjs/common");
 const myProfile_service_1 = require("./myProfile.service");
-const bcrypt = require('bcrypt');
-const platform_express_1 = require("@nestjs/platform-express");
+const bcrypt = require('bcryptjs');
 const fs_1 = require("fs");
 let ProfileControler = class ProfileControler {
     constructor(profileService) {
@@ -80,12 +79,6 @@ let ProfileControler = class ProfileControler {
             }
         }
     }
-    uploadFile(file) {
-        return file;
-    }
-    uplodAudio(file) {
-        return file;
-    }
     async sendImage(res, name) {
         let tmp;
         tmp = await (0, fs_1.readFile)('./img/' + name, (err, data) => {
@@ -144,22 +137,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ProfileControler.prototype, "mouvProfileAll", null);
-__decorate([
-    (0, common_1.Post)('uplodImg'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('img', { dest: './img' })),
-    __param(0, (0, common_1.UploadedFile)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], ProfileControler.prototype, "uploadFile", null);
-__decorate([
-    (0, common_1.Post)('uplodAudio'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('audio', { dest: './audio' })),
-    __param(0, (0, common_1.UploadedFile)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], ProfileControler.prototype, "uplodAudio", null);
 __decorate([
     (0, common_1.Get)('sendImage:name'),
     __param(0, (0, common_1.Res)()),

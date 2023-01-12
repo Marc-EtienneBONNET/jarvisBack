@@ -31,6 +31,8 @@ AppModule = __decorate([
                 synchronize: true,
                 autoLoadEntities: true,
                 logging: false,
+                subscribers: [],
+                migrations: [],
             }),
             myEvent_module_1.MyEventModule,
             myProfile_module_1.ProfileModule,
